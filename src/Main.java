@@ -9,7 +9,33 @@ public class Main {
 
         String input = JOptionPane.showInputDialog("Enter something to encrypt:");
         String inputAsNumbers = turnStringIntoWordString(input);
-        System.out.println(inputAsNumbers);
+        //System.out.println(inputAsNumbers);
+
+
+
+
+
+
+
+
+
+        String numbersString = turnStringIntoWordString("Hello");
+        System.out.println(numbersString);
+        System.out.println(grabFirst9(numbersString));
+        System.out.println(encrypt(grabFirst9(numbersString), e, p1p2));
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     public static String turnStringIntoWordString(String s) {
@@ -33,6 +59,26 @@ public class Main {
             System.out.println(currentCharacter);
             changeLetterToNumber(currentCharacter);
         }
+    }
+
+    public static BigInteger encrypt(String s, BigInteger e, BigInteger p1p2) {
+        //step 1, get String s into BigInteger format
+        BigInteger m = new BigInteger(s);
+        BigInteger encrypted = m.modPow(e,p1p2); //encryption algorithm
+        return  encrypted;
+    }
+
+    public static String grabFirst9(String s) {
+        String front9 = "";
+        if(s.length() >= 9)
+            front9 = s.substring(0,9);
+        else {
+            if (s.length() == 6)
+                front9 = s + "000";
+            else if(s.length() == 3)
+                front9 = s + "000000";
+        }
+        return front9;
     }
 
     /*
